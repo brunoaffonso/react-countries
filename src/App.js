@@ -10,7 +10,7 @@ export default class App extends Component {
       allCountries: [],
       filteredCountries: [],
       filter: '',
-      countries: [],
+      totalPopulation: '',
     };
   }
 
@@ -29,41 +29,70 @@ export default class App extends Component {
         languages,
         callingCodes,
         alpha3Code,
+        currencies,
       }) => {
         return {
           id: numericCode,
           name: translations.br,
+          nameLowerCase: translations.br.toLowerCase(),
           flag,
           population,
           capital,
           region,
-          language: languages[0].iso639_1,
+          language: languages[0].name,
           callingCodes: callingCodes[0],
           alpha3Code,
+          currencies: currencies[0].name,
         };
       }
     );
 
+    const totalPopulation = this.countPopulation(mappedCountries);
+
     this.setState({
       allCountries: mappedCountries,
       filteredCountries: mappedCountries,
+      totalPopulation,
     });
   }
 
+  countPopulation = (countries) => {
+    const totalPopulation = countries.reduce((acc, curr) => {
+      return acc + curr.population;
+    }, 0);
+    return totalPopulation;
+  };
+
   handleChangeFilter = (newFilter) => {
-    console.log(newFilter);
     this.setState({
       filter: newFilter,
+    });
+    const filterLowerCase = newFilter.toLowerCase();
+
+    const res = this.state.allCountries.filter((countries) => {
+      return countries.nameLowerCase.includes(filterLowerCase);
+    });
+
+    const population = this.countPopulation(res);
+
+    this.setState({
+      filteredCountries: res,
+      totalPopulation: population,
     });
   };
 
   render() {
-    const { allCountries, filter } = this.state;
+    const { filter, filteredCountries, totalPopulation } = this.state;
     return (
-      <div>
-        <h3>React Countries</h3>
-        <Header filter={filter} onChangeFilter={this.handleChangeFilter} />
-        <Countries countries={allCountries} />
+      <div className="container">
+        <h3 style={{ textAlign: 'center' }}>React Countries</h3>
+        <Header
+          filter={filter}
+          onChangeFilter={this.handleChangeFilter}
+          countCountries={filteredCountries.length}
+          population={totalPopulation}
+        />
+        <Countries countries={filteredCountries} />
       </div>
     );
   }
