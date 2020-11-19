@@ -19,7 +19,7 @@ export default class Country extends Component {
               Capital: <strong>{country.capital}</strong>
             </li>
             <li>
-              Idimoa: <strong>{country.language}</strong>
+              Idioma: <strong>{country.language}</strong>
             </li>
             <li>
               Código DDI: <strong>{country.callingCodes}</strong>

@@ -19,10 +19,10 @@ export default class Header extends Component {
           onChange={this.handleInput}
         />
         <span className={css.country}>
-          | Países:<strong>{countCountries}</strong>
+          | Países: <strong>{countCountries}</strong>
         </span>
         <span className={css.population}>
-          | População:<strong>{population}</strong>
+          | População: <strong>{population}</strong>
         </span>
       </div>
     );

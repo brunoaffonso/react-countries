@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Countries from './components/countries/Countries';
 import Header from './components/header/Header';
 
+import { numberFormatter } from './helpers/helper';
+
 export default class App extends Component {
   constructor() {
     super();
@@ -85,12 +87,12 @@ export default class App extends Component {
     const { filter, filteredCountries, totalPopulation } = this.state;
     return (
       <div className="container">
-        <h3 style={{ textAlign: 'center' }}>React Countries</h3>
+        <h2 style={{ textAlign: 'center' }}>React Countries</h2>
         <Header
           filter={filter}
           onChangeFilter={this.handleChangeFilter}
           countCountries={filteredCountries.length}
-          population={totalPopulation}
+          population={numberFormatter(totalPopulation)}
         />
         <Countries countries={filteredCountries} />
       </div>
