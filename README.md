@@ -1,8 +1,8 @@
-Projeto desenvolvido com finalidade educacional. 
+## Projeto desenvolvido com finalidade educacional.
 
 Desafio Guiado 2 do módulo de React do Bootcamp Fullstack IGTI
 
-Preview do projeto: https://react-countries-three.vercel.app/
+### Preview do projeto: https://react-countries-three.vercel.app/
 
 API utilizada: https://restcountries.eu/
 
