@@ -1,0 +1,9 @@
+.charts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: lightgray solid 1px;
+  border-radius: 10px;
+  margin: 10px;
+}

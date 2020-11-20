@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import css from './header.module.css';
+import Charts from '../charts/Charts';
 
 export default class Header extends Component {
   handleInput = (event) => {
@@ -9,21 +10,28 @@ export default class Header extends Component {
   };
 
   render() {
-    const { filter, countCountries, population } = this.props;
+    const { filter, countCountries, population, region } = this.props;
     return (
       <div className={css.header}>
-        <input
-          style={{ width: '400px' }}
-          type="text"
-          value={filter}
-          onChange={this.handleInput}
-        />
-        <span className={css.country}>
-          | Países: <strong>{countCountries}</strong>
-        </span>
-        <span className={css.population}>
-          | População: <strong>{population}</strong>
-        </span>
+        <div className={css.flexColumn}>
+          <input
+            style={{ width: '400px' }}
+            type="text"
+            value={filter}
+            onChange={this.handleInput}
+          />
+          <span className={css.country}>
+            | Países: <strong>{countCountries}</strong>
+          </span>
+          <span className={css.population}>
+            | População: <strong>{population}</strong>
+          </span>
+        </div>
+        <div>
+          <div className={css.charts}>
+            <Charts region={region} />
+          </div>
+        </div>
       </div>
     );
   }

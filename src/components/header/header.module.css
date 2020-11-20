@@ -9,6 +9,12 @@
   padding: 10px;
 }
 
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
 .country {
   width: 100px;
   font-size: large;

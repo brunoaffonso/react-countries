@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Countries from './components/countries/Countries';
 import Header from './components/header/Header';
 
-import { numberFormatter } from './helpers/helper';
+// import css from './styles.module.css';
+
+import { numberFormatter } from './helpers/Helper';
+import { handleContinents } from './components/charts/continents';
+// import Charts from './components/charts/Charts';
 
 export default class App extends Component {
   constructor() {
@@ -13,6 +17,7 @@ export default class App extends Component {
       filteredCountries: [],
       filter: '',
       totalPopulation: '',
+      region: [],
     };
   }
 
@@ -50,11 +55,13 @@ export default class App extends Component {
     );
 
     const totalPopulation = this.countPopulation(mappedCountries);
+    const resContinents = handleContinents(mappedCountries);
 
     this.setState({
       allCountries: mappedCountries,
       filteredCountries: mappedCountries,
       totalPopulation,
+      region: resContinents,
     });
   }
 
@@ -76,15 +83,17 @@ export default class App extends Component {
     });
 
     const population = this.countPopulation(res);
+    const resContinents = handleContinents(res);
 
     this.setState({
       filteredCountries: res,
       totalPopulation: population,
+      region: resContinents,
     });
   };
 
   render() {
-    const { filter, filteredCountries, totalPopulation } = this.state;
+    const { filter, filteredCountries, totalPopulation, region } = this.state;
     return (
       <div className="container">
         <h2 style={{ textAlign: 'center' }}>React Countries</h2>
@@ -93,6 +102,7 @@ export default class App extends Component {
           onChangeFilter={this.handleChangeFilter}
           countCountries={filteredCountries.length}
           population={numberFormatter(totalPopulation)}
+          region={region}
         />
         <Countries countries={filteredCountries} />
       </div>
