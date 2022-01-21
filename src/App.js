@@ -22,7 +22,7 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
-    const countries = await fetch('https://restcountries.eu/rest/v2/all');
+    const countries = await fetch('https://restcountries.com/v3.1/all');
     const json = await countries.json();
 
     const mappedCountries = json.map(
